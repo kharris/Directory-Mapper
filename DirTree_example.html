@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Folder Tree - New Jersey</title>
+    <script type="text/javascript" src="directoryMapper.js"></script>
+    <link rel="stylesheet" href="directoryMapper.css">
+</head>
+
+<body>
+    <div class="column-containers">
+        <div class="column1">
+            <div class="directory-map">
+                <li class="folder" class="top" draggable="true" ondragstart="drag(event)" onclick="doit(this)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey">
+                    <strong>New Jersey</strong>
+                </li>
+                <div class="folder" name="New-Jersey">
+                    <ul>
+                        <li draggable="true" ondragstart="drag(event)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\Rail_lines.zip">
+                            Rail_lines.zip
+                        </li>
+                        <li draggable="true" ondragstart="drag(event)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\tree.txt">
+                            tree.txt
+                        </li>
+                        <li class="folder" draggable="true" ondragstart="drag(event)" onclick="doit(this)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\Census Boundaries">
+                            Census Boundaries
+                        </li>
+                        <div class="folder" name="CensusBoundaries">
+                            <ul>
+                                <li draggable="true" ondragstart="drag(event)">BlockGroups_2016.zip</li>
+                                <li draggable="true" ondragstart="drag(event)">censustracts_2019.cpg</li>
+                                <li draggable="true" ondragstart="drag(event)">censustracts_2019.dbf</li>
+                                <li draggable="true" ondragstart="drag(event)">censustracts_2019.prj</li>
+                                <li draggable="true" ondragstart="drag(event)">censustracts_2019.sbn</li>
+                                <li draggable="true" ondragstart="drag(event)">censustracts_2019.sbx</li>
+                                <li draggable="true" ondragstart="drag(event)">censustracts_2019.shp</li>
+                                <li draggable="true" ondragstart="drag(event)">censustracts_2019.shp.xml</li>
+                                <li draggable="true" ondragstart="drag(event)">censustracts_2019.shx</li>
+                            </ul>
+                        </div>
+                        <li class="folder" draggable="true" ondragstart="drag(event)" onclick="doit(this)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\Hudson_County_Parcels_2015">
+                            Hudson_County_Parcels_2015
+                        </li>
+                        <div class="folder" name="Hudson_County_Parcels_2015">
+                            <ul>
+                                <li draggable="true" ondragstart="drag(event)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\Hudson_County_Parcels_2015\Hudson_County_Parcels_2015.cpg">
+                                    Hudson_County_Parcels_2015.cpg
+                                </li>
+                                <li draggable="true" ondragstart="drag(event)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\Hudson_County_Parcels_2015\Hudson_County_Parcels_2015.dbf">
+                                    Hudson_County_Parcels_2015.dbf
+                                </li>
+                                <li draggable="true" ondragstart="drag(event)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\Hudson_County_Parcels_2015\Hudson_County_Parcels_2015.prj">
+                                    Hudson_County_Parcels_2015.prj
+                                </li>
+                                <li draggable="true" ondragstart="drag(event)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\Hudson_County_Parcels_2015\Hudson_County_Parcels_2015.shp">
+                                    Hudson_County_Parcels_2015.shp
+                                </li>
+                                <li draggable="true" ondragstart="drag(event)" data-addy="C:\Users\Harriskd\Documents\Personal\Data\New Jersey\Hudson_County_Parcels_2015\Hudson_County_Parcels_2015.shx">
+                                    Hudson_County_Parcels_2015.shx
+                                </li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="column2">
+            <div class="drop-zone" ondragenter="colorDZ('red')" ondragleave="colorDZ('#5f88f8')" ondrop="showAddy(event)" ondragover="allowDrop(event)">Drop File Here to Open</div>
+        </div>
+    </div>
+<script>
+    var folderDivs = document.querySelectorAll("div.folder");
+    var folderNmList = document.querySelectorAll("li.folder");
+
+    folderDivs.forEach(hideFolders);
+    folderNmList.forEach(formatFolderNms);
+
+    function hideFolders(el){
+        el.style["display"] = "none";
+    }
+    function formatFolderNms(el){
+        el.style["font-weight"] = "bold";
+        el.style["list-style-type"] = "square";
+    }
+</script>
+</body>
+</html>

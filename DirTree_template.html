@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Folder Tree - {{topFolder}}</title>
+    <script src="C:\Users\Harriskd\Documents\Personal\Python_Scripts\myMods\OStools\directoryMapper.js"></script>
+    <link rel="stylesheet" href="C:\Users\Harriskd\Documents\Personal\Python_Scripts\myMods\OStools\directoryMapper.css">
+</head>
+
+<body>
+    <div class="column-containers">
+        <div class="column1">
+            <button id="folder-button" onclick="popFolders()">Pop Go the Folders!</button>
+            <div class="directory-map">
+                <li class="folder" id="top" name="{{topFolder.replace(' ','-')}}" data-level=0 draggable="true" ondragstart="drag(event)" onclick="doit(this,event)" onclick="event.stopPropagation()"
+                data-addy="{{topPath}}">
+                    <strong>{{topFolder}}</strong>
+                </li>
+                <div class="folder" id=0 name="{{topFolder.replace(' ','-')}}" data-level="0" data-addy="{{topPath}}">
+                    <ul name="{{topFolder.replace(' ','-')}}">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="column2">
+            <div class="drop-zone" ondragenter="colorDZ('red')" ondragleave="colorDZ('#5f88f8')" ondrop="showAddy(event)" ondragover="allowDrop(event)">Drop File Here to Open</div>
+        </div>
+    </div>
+    {% block javascript %}
+    <script name="create-tree">
+        function createTree(){
+            {% set foldId = 0 %}
+            {% for f in mapList %}
+                var curUl = document.querySelector(`div[name="{{f[1].parentNm.replace(' ','-')}}"][data-level="{{(f[1].level-1)}}"] ul`);
+                var newLi = document.createElement("li");
+                newLi.innerText = "{{f[0]}}";          
+                newLi.className = "{{f[2]}}";
+                newLi.draggable = "true";
+                newLi.addEventListener("dragstart",function(){drag(event)},false);
+                newLi.dataset.addy = "{{f[1].fpath.replace('\\','\\\\')}}";
+        
+                curUl.appendChild(newLi);
+                {% if f[2] == 'folder' %}
+                    {% set foldId = foldId + 1 %}
+                    newLi.setAttribute('name',"{{f[0].replace(' ','-')}}");
+                    newLi.dataset.level = "{{f[1].level}}";
+                    newLi.addEventListener("click",function(){doit(this,event)},false);
+                    //newLi.addEventListener("onclick",function(){event.stopPropagation();console.log("We got dis!");},false);
+
+                    var newDiv = document.createElement("div");
+                    newDiv.className = "folder";
+                    newDiv.setAttribute("id",{{foldId}});
+                    newDiv.setAttribute("name","{{f[0].replace(' ','-')}}");
+                    newDiv.dataset.level = "{{f[1].level}}";
+                    newDiv.dataset.addy = "{{f[1].fpath.replace('\\','\\\\')}}";
+            
+                    var newUl = document.createElement("ul");
+                    newUl.setAttribute("name","{{f[0].replace(' ','-')}}");
+            
+                    newLi.insertAdjacentElement('afterend',newDiv);
+                    newDiv.appendChild(newUl);
+                {% endif %}   
+            {% endfor %}
+        }
+        var elem = document.querySelector("script[name='create-tree']");
+        elem.parentNode.removeChild(elem);
+    
+        createTree();
+    </script>
+    {% endblock %}
+    <script>
+        var folderDivs = document.querySelectorAll("div.folder");
+        var folderNmList = document.querySelectorAll("li.folder");
+
+        folderDivs.forEach(hideFolders);
+        folderNmList.forEach(formatFolderNms);
+
+        function hideFolders(el){
+            el.style["display"] = "none";
+        }
+        function formatFolderNms(el){
+            el.style["font-weight"] = "bold";
+            el.style["list-style-type"] = "square";
+        }
+    </script>
+</body>
+</html>
