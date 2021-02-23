@@ -54,10 +54,8 @@ class DirectoryFile(DirectoryFolder):
 
 if __name__ == '__main__':
 
-    #frontierFile = r"C:\Users\Harriskd\Documents\Personal\Data\New Jersey"
-    #outFile = r"C:/Users/Harriskd/Desktop/meowMap_withJS.html"
-    frontierFile = r"J:\2020 projects\EBXD7901\800deliv"
-    outFile = r"C:\Users\Harriskd\Documents\Personal\Projects\Roadway\LIE\Folder Maps\800Folder_20210121.html"
+    frontierFile = r"C:\Documents\Data\New Jersey"
+    outFile = r"C:\Documents"
 
     env = jinja2.Environment( loader = jinja2.FileSystemLoader(str(Path.cwd())))
     template = env.get_template('DirTree_template.html')
