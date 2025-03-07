@@ -3,8 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Folder Tree - {{topFolder}}</title>
-    <script src="C:\Users\Harriskd\Documents\Personal\Python_Scripts\myMods\OStools\directoryMapper.js"></script>
-    <link rel="stylesheet" href="C:\Users\Harriskd\Documents\Personal\Python_Scripts\myMods\OStools\directoryMapper.css">
+    <script src=".\directoryMapper.js"></script>
+    <link rel="stylesheet" href=".\directoryMapper.css">
 </head>
 
 <body>
@@ -45,7 +45,6 @@
                     newLi.setAttribute('name',"{{f[0].replace(' ','-')}}");
                     newLi.dataset.level = "{{f[1].level}}";
                     newLi.addEventListener("click",function(){doit(this,event)},false);
-                    //newLi.addEventListener("onclick",function(){event.stopPropagation();console.log("We got dis!");},false);
 
                     var newDiv = document.createElement("div");
                     newDiv.className = "folder";
